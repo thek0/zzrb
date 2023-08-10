@@ -1,0 +1,63 @@
+{
+  "name": "zzrb-app",
+  "productName": "zzrb-app",
+  "description": "zzrb-desktop app",
+  "author": "leesh0 <notedev.jp@gmail.com",
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "nodemon": "nodemon",
+    "start": "npm run compile && electron .",
+    "svelte:dev": "cd app && npm run dev",
+    "svelte:build": "cd app && npm run build",
+    "compile": "tsc",
+    "out:win": "npm run svelte:build && npm run compile && electron-builder build --win --publish never",
+    "publish:win": "npm run svelte:build && npm run compile && electron-builder build --win --publish always",
+    "check-updates": "npx npm-check-updates",
+    "check-updates:minor": "npx npm-check-updates --target minor",
+    "check-updates:patch": "npx npm-check-updates --target patch"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "concurrently": "^7.4.0",
+    "electron": "^20.1.4",
+    "electron-builder": "^23.3.3",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@el3um4s/ipc-for-electron": "^1.0.7",
+    "@el3um4s/ipc-for-electron-system-info": "^2.0.4",
+    "electron-reload": "^1.5.0",
+    "electron-serve": "^1.1.0",
+    "electron-updater": "^5.2.1"
+  },
+  "build": {
+    "appId": "memento-ket",
+    "directories": {
+      "output": "out"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "leesh0",
+        "repo": ""
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "zzrb",
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
