@@ -6,3 +6,4 @@ dist
 out
 .dist-rollup
 .svelte-rollup
+svelte
